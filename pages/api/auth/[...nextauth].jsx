@@ -1,6 +1,7 @@
 import { FirebaseAdapter } from "@next-auth/firebase-adapter";
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, query, runTransaction, updateDoc, where } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
@@ -16,6 +17,8 @@ const firebaseConfig = {
 const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+const storage = getStorage(app);
+export { app, db, storage };
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
